@@ -1,0 +1,15 @@
+.widget-header a:hover {
+  color: #40a846;
+}
+
+.widget-header:hover i {
+  color: #40a846;
+}
+
+.section-footer ul a:hover {
+  color: #40a846;
+}
+
+.list-menu a:hover {
+  color: #40a846;
+}

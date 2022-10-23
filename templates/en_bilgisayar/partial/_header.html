@@ -1,0 +1,115 @@
+<section class="section-intro bg-primary text-white text-center">
+  <div class="container d-flex flex-column" style="min-height: 50vh">
+    <div class="row mt-5">
+      <div class="col-lg-8 col-sm-12 text-center mx-auto">
+        <h1 class="display-4 mb-4">En<strong>Bilgisayar</strong>.com</h1>
+        <p class="lead mb-5">Yeni bilgisayarını en uygun fiyatta SADECE EnBilgisayar.com'da al!</p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-9 col-md-8 col-sm-12 mx-auto text-center">
+        <form class="form-noborder">
+          <div class="form-row mb-5">
+            <div class="col-lg-7 col-sm-12 form-group">
+              <input class="form-control form-control-lg" placeholder="Search Your New Laptop" type="text" />
+            </div>
+            <div class="col-lg-2 col-sm-12 form-group">
+              <select class="custom-select form-control-lg">
+                <option>All category</option>
+                <!--<option>Category name</option>
+                <option>Category name</option>
+                <option>Category name</option>-->
+              </select>
+            </div>
+            <div class="col-lg-3 col-sm-12 form-group">
+              <button class="btn btn-danger btn-block btn-lg" type="submit">Search</button>
+            </div>
+          </div>
+        </form>
+        <p class="small mb-5">
+          Diğer sitelerdeki fiyat karşılaştırmak için <a class="badge badge-success" href="{% url 'en-ucuz-home' %}"><strong>EnUcuz.com</strong></a
+          >'da!
+        </p>
+        {% comment %}
+        <ul class="list-inline my-5">
+          <li class="list-inline-item">
+            <a class="h4 text-light p-2" href="#">
+              <i class="fab fa-twitter"></i>
+            </a>
+          </li>
+          <li class="list-inline-item">
+            <a class="h4 text-light p-2" href="#">
+              <i class="fab fa-facebook"></i>
+            </a>
+          </li>
+          <li class="list-inline-item">
+            <a class="h4 text-light p-2" href="#">
+              <i class="fab fa-dribbble"></i>
+            </a>
+          </li>
+          <li class="list-inline-item">
+            <a class="h4 text-light p-2" href="#">
+              <i class="fab fa-instagram"></i>
+            </a>
+          </li>
+        </ul>
+        {% endcomment %}
+      </div>
+      <!-- col.// -->
+    </div>
+    <!-- row.// -->
+  </div>
+</section>
+<section class="section-specials padding-y border-bottom">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4">
+        <figure class="itemside">
+          <div class="aside">
+            <span class="icon-sm rounded-circle bg-primary">
+              <i class="fa fa-money-bill-alt white"></i>
+            </span>
+          </div>
+          <figcaption class="info">
+            <h6 class="title">Reasonable prices</h6>
+            <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labor</p>
+          </figcaption>
+        </figure>
+        <!-- iconbox // -->
+      </div>
+      <!-- col // -->
+      <div class="col-md-4">
+        <figure class="itemside">
+          <div class="aside">
+            <span class="icon-sm rounded-circle bg-danger">
+              <i class="fa fa-comment-dots white"></i>
+            </span>
+          </div>
+          <figcaption class="info">
+            <h6 class="title">Customer support 24/7</h6>
+            <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labor</p>
+          </figcaption>
+        </figure>
+        <!-- iconbox // -->
+      </div>
+      <!-- col // -->
+      <div class="col-md-4">
+        <figure class="itemside">
+          <div class="aside">
+            <span class="icon-sm rounded-circle bg-success">
+              <i class="fa fa-truck white"></i>
+            </span>
+          </div>
+          <figcaption class="info">
+            <h6 class="title">Quick delivery</h6>
+            <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labor</p>
+          </figcaption>
+        </figure>
+        <!-- iconbox // -->
+      </div>
+      <!-- col // -->
+    </div>
+    <!-- row.// -->
+  </div>
+  <!-- container.// -->
+</section>

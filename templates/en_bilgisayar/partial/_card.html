@@ -1,0 +1,36 @@
+{% load mathfilters %}
+<div class="container">
+  <div class="row">
+    {% for product in products %}
+    <div class="col-md-3">
+      <figure class="card card-product-grid">
+        <div class="img-wrap">
+          <img src="{{ product.item_image_link }}" />
+          <span class="topbar">
+            <a href="#" class="float-right"><i class="fa fa-heart"></i></a>
+          </span>
+          <a class="btn-overlay" href="#"><i class="fa fa-search-plus"></i> Quick view</a>
+        </div>
+        <figcaption class="info-wrap border-top">
+          {% with rating=product.item_rating %}
+          <!--|floatformat:"1"-->
+          <ul class="rating-stars">
+            <li style="width: {{ rating|mul:20.0 }}%" class="stars-active"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i></li>
+            <li><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i></li>
+          </ul>
+          <small class="text-muted">{{ rating }}</small>
+          <a href="/laptop/{{product.item_name}}" class="title mb-3">{{ product.item_name }}</a>
+
+          <div class="mt-2">
+            <var class="price">{{ product.item_price }} TL</var>
+            <a href="#" class="btn btn-sm btn-outline-primary float-right">Add to cart <i class="fa fa-shopping-cart"></i></a>
+          </div>
+
+          {% endwith %}
+          <!-- price-wrap.// -->
+        </figcaption>
+      </figure>
+    </div>
+    {% endfor %}
+  </div>
+</div>

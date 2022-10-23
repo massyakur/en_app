@@ -1,0 +1,8 @@
+{% load mathfilters %} {% with rating=product.item_rating %}
+<!--|floatformat:"1"-->
+<ul class="rating-stars">
+  <li style="width: {{ rating|mul:20.0 }}%" class="stars-active"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i></li>
+  <li><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i></li>
+</ul>
+<small class="text-muted">{{ rating }}/5</small>
+{% endwith %}

@@ -1,0 +1,105 @@
+{% load mathfilters %} {% load humanize %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="pragma" content="no-cache" />
+    <meta http-equiv="cache-control" content="max-age=604800" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+
+    <title>Laptops - En Bilgisayar</title>
+
+    {% include 'en_bilgisayar/partial/_cssjs.html' %}
+  </head>
+  <body>
+    {% include 'en_bilgisayar/partial/_navbar.html' %}
+
+    <!-- ========================= SECTION PAGETOP ========================= -->
+    <section class="section-pagetop bg">
+      <div class="container">
+        <h2 class="title-page">Our Laptops</h2>
+        <nav>
+          <ol class="breadcrumb text-white">
+            <li class="breadcrumb-item"><a href="{% url 'home' %}">Home</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Laptop</li>
+          </ol>
+        </nav>
+      </div>
+      <!-- container //  -->
+    </section>
+    <!-- ========================= SECTION INTRO END// ========================= -->
+
+    <!-- ========================= SECTION CONTENT ========================= -->
+    <section class="section-content padding-y">
+      <div class="container">
+        <div class="row">
+          {% include 'en_bilgisayar/partial/_filter.html' %}
+          <!-- col.// -->
+          <main class="col-md-9">
+            <header class="border-bottom mb-4 pb-3">
+              <div class="form-inline">
+                <span class="mr-md-auto">{{ products.count }} Items found </span>
+                <select class="mr-2 form-control">
+                  <option>Latest items</option>
+                  <option>Trending</option>
+                  <option>Most Popular</option>
+                  <option>Cheapest</option>
+                </select>
+                <div class="btn-group">
+                  <a href="#" id="price" value="item_price" class="btn btn-outline-secondary" data-toggle="tooltip" title="List view"><i class="fa fa-dollar-sign"></i></a>
+                  <a href="#" id="-price" value="-item_price" class="btn btn-outline-secondary" data-toggle="tooltip" title="List view"><i class="fa fa-dollar-sign"></i><i class="fa fa-dollar-sign"></i><i class="fa fa-dollar-sign"></i></a>
+                  <a href="#" class="btn btn-outline-secondary" data-toggle="tooltip" title="Grid view"><i class="fa fa-star"></i></a>
+                  <a href="#" class="btn btn-outline-secondary" data-toggle="tooltip" title="List view"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i></a>
+                </div>
+              </div>
+            </header>
+            <!-- sect-heading -->
+
+            <div class="row">
+              {% for product in products.qs %}
+              <div class="col-md-4">
+                <figure class="card card-product-grid">
+                  <div class="img-wrap">
+                    <img src="{{ product.item_image_link }}" />
+                    <span class="topbar">
+                      <a href="#" class="float-right"><i class="fa fa-heart"></i></a>
+                    </span>
+                    <a class="btn-overlay" href="#"><i class="fa fa-search-plus"></i> Quick view</a>
+                  </div>
+                  <!-- img-wrap.// -->
+                  <figcaption class="info-wrap">
+                    <div>
+                      {% with rating=product.item_rating %}
+                      <!--|floatformat:"1"-->
+                      <ul class="rating-stars">
+                        <li style="width: {{ rating|mul:20.0 }}%" class="stars-active"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i></li>
+                        <li><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i></li>
+                      </ul>
+                      <small class="text-muted">{{ rating }}</small>
+                      {% endwith %}
+                      <a href="{{ product.item_name }}" class="title">{{ product.item_name }}</a>
+                      <div class="price-wrap mt-2">
+                        <span class="price">{{ product.item_price|intcomma }} TL</span>
+                      </div>
+                      <!-- price-wrap.// -->
+                    </div>
+                    <a href="#" class="btn btn-block btn-primary mt-3">Add to cart </a>
+                  </figcaption>
+                </figure>
+              </div>
+              {% endfor %}
+              <!-- col.// -->
+            </div>
+            <!-- row end.// -->
+            {% comment %} {% include 'en_bilgisayar/partial/_pagination.html' %} {% endcomment %}
+          </main>
+
+          <!-- col.// -->
+        </div>
+      </div>
+      <!-- container .//  -->
+    </section>
+    <!-- ========================= SECTION CONTENT END// ========================= -->
+    {% include 'en_bilgisayar/partial/_footer.html' %}
+  </body>
+</html>
