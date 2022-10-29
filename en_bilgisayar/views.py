@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import Product, All
+from .models import Product
 from django.core.paginator import Paginator
 from .filters import ProductFilter
 from django.db.models import Q
@@ -35,7 +35,7 @@ def show_all(request):
     
     filtered_products = ProductFilter(request.GET, queryset=products)
 
-    others = All.objects.all()
+    # others = All.objects.all()
     # paginated_filtered_products = Paginator(filtered_products.qs, 15)
     # page_number = request.GET.get('page')
     # product_page_obj = paginated_filtered_products.get_page(page_number)
@@ -54,7 +54,7 @@ def show_all(request):
 
     context = {
         'products': filtered_products,
-        'others': others,
+        # 'others': others,
         # 'p': product_page_obj,
         # 'page_range': page_range, 
         # 'brand_list': brand_list,

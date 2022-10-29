@@ -44,7 +44,6 @@ INSTALLED_APPS = [
     'django_filters',
     'crispy_forms',
     'django.contrib.humanize',
-    'cobaja',
 ]
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'

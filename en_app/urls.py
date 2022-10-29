@@ -20,6 +20,4 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('en_bilgisayar.urls')),
     path('', include('en_ucuz.urls')),
-    path('', include('cobaja.urls')),
-
 ]
