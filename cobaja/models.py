@@ -1,31 +1,26 @@
-# from datetime import date
 from djongo import models
 from django import forms
 
-class AllProduct(models.Model):
-    id = models.ObjectIdField()
-    item_model_number = models.CharField(max_length=100)
-    item_site_name = models.CharField(max_length=100)
-    item_price = models.FloatField()
+class Laptop(models.Model):
+    _id = models.ObjectIdField()
     item_rating = models.FloatField()
+    item_price = models.FloatField()
+    item_site_name = models.CharField(max_length=50)
+    item_image_link = models.TextField()
     item_link = models.TextField()
-    item_image_link = models.TextField(blank=True, null=True)
     # class Meta:
-    #     abstract = True
+    #     abstract = False
+    # def __str__(self):
+    #     return self.name
 
-class AllProductForm(forms.ModelForm):
+class LaptopForm(forms.ModelForm):
     
     class Meta:
-        model = AllProduct
+        model = Laptop
         fields = '__all__'
 
 class Product(models.Model):
     _id = models.ObjectIdField()
-    all_product = models.ArrayField(
-        model_container = AllProduct,
-        model_form_class = AllProductForm,
-        blank=True, null=True
-    )
     item_name = models.CharField(max_length=255, unique=True)
     item_brand = models.CharField(max_length=50)
     item_model_number = models.CharField(max_length=100)
@@ -41,3 +36,9 @@ class Product(models.Model):
     item_site_name = models.CharField(max_length=50)
     item_image_link = models.TextField()
     item_link = models.TextField()
+    laptops = models.ArrayField(
+        model_container = Laptop,
+        model_form_class = LaptopForm,
+        blank=True, null=True
+    )
+    objects = models.DjongoManager()
