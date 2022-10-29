@@ -1,7 +1,8 @@
 from django.shortcuts import render
-from .models import Product
+from .models import Product, All
 from django.core.paginator import Paginator
 from .filters import ProductFilter
+from django.db.models import Q
 
 def home(request):
     products = Product.objects.all()[:12]
@@ -9,10 +10,10 @@ def home(request):
 
 def show_all(request):
 
-    ordering = request.GET.get('ordering', "")
-    price = request.GET.get('price', "")
-    rating = request.GET.get('rating', "")
-    search = request.GET.get('search', "")
+    # orderby = request.GET.get('orderby', "")
+    # price = request.GET.get('price', "")
+    # rating = request.GET.get('rating', "")
+    q = request.GET.get('q')
     # brand_list = []
     # q = Product.objects.values_list("item_brand").distinct()
     # for e in q:
@@ -20,30 +21,50 @@ def show_all(request):
     # brand_list.sort()
     # print(brand_list)
 
-    if search:
-        products = Product.objects.filter(item_name__icontains = search)
+    # if 'q' in request.GET:
+    if q:
+        multiple_q = Q(Q(item_name__icontains=q) | Q(item_site_name__icontains=q))
+        products = Product.objects.filter(multiple_q)
+
     else:
-        all_products = Product.objects.all()
-    if ordering:
-        products = products.order_by(ordering)
+        products = Product.objects.all()
+    # if ordering:
+    #     products = products.order_by(ordering)
 
-    products = ProductFilter(request.GET, queryset=Product.objects.all())
+    # print(all_products)
+    
+    filtered_products = ProductFilter(request.GET, queryset=products)
 
-    p = Paginator(products, 15) #
-    page = request.GET.get('page', 1)
-    #products = p.get_page(page)
-    page_range = p.get_elided_page_range(number=page)
+    others = All.objects.all()
+    # paginated_filtered_products = Paginator(filtered_products.qs, 15)
+    # page_number = request.GET.get('page')
+    # product_page_obj = paginated_filtered_products.get_page(page_number)
+    # if orderby:
+    #     filtered_products = filtered_products.qs.order_by(orderby)
+
+
+
+    # p = Paginator(filtered_products.qs, 15) #
+    # page = request.GET.get('page', 1)
+    # products = p.get_page(page)
+
+    # page_range = paginated_filtered_products.get_elided_page_range(number=page_number)
+
     # print(page_range)
+
     context = {
-        'products': products, 
-        'page_range': page_range, 
+        'products': filtered_products,
+        'others': others,
+        # 'p': product_page_obj,
+        # 'page_range': page_range, 
         # 'brand_list': brand_list,
     }
 
     return render(request, 'en_bilgisayar/products.html', context)
 
 def product_detail(request, name):
+    
     product = Product.objects.get(item_name=name)
-    # print(product._id)
+    
     n = range(500)
     return render(request, 'en_bilgisayar/product_detail.html', {'product': product, 'n': n})

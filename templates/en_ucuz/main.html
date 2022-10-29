@@ -1,4 +1,4 @@
-{% load static %}
+{% load static %} {% load mathfilters %} {% load humanize %} {% load my_tags %}
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -12,6 +12,173 @@
     <link href="{% static 'css/custom.css' %}" rel="stylesheet" type="text/css" />
   </head>
   <body>
-    {% include 'en_ucuz/partial/_navbar.html' %} {% include 'en_ucuz/partial/_filter.html' %} {% include 'en_ucuz/partial/_footer.html' %}
+    {% include 'en_ucuz/partial/_navbar.html' %}
+    <!-- ========================= SECTION PAGETOP ========================= -->
+    <section class="section-pagetop bg">
+      <div class="container">
+        <h2 class="title-page">EnUcuz'u Burada Bul!</h2>
+        <nav>
+          <ol class="breadcrumb text-white">
+            <li class="breadcrumb-item"><a href="{% url 'home' %}">EnBilgisayar</a></li>
+            <li class="breadcrumb-item active" aria-current="page">EnUcuz</li>
+          </ol>
+        </nav>
+      </div>
+      <!-- container //  -->
+    </section>
+    <!-- ========================= SECTION INTRO END// ========================= -->
+
+    <!-- ========================= SECTION CONTENT ========================= -->
+    <section class="section-content padding-y">
+      <div class="container">
+        <div class="row">
+          {% include 'en_ucuz/partial/_filter.html' %}
+          <!-- col.// -->
+          <main class="col-md-9">
+            <header class="border-bottom mb-4 pb-3">
+              <div class="form-inline">
+                <span class="mr-md-auto">{{ products.qs|length }} Items found </span>
+                {% comment %}
+                <select class="mr-2 form-control">
+                  <option>Latest items</option>
+                  <option>Trending</option>
+                  <option>Most Popular</option>
+                  <option>Cheapest</option>
+                </select>
+                {% endcomment %}
+                <a href="{% my_url '' 'o' request.GET.urlencode %}" class="btn mr-3 btn-sm btn-secondary">X</a>
+                <div class="btn-group">
+                  <a href="{% my_url 'Price' 'o' request.GET.urlencode %}" id="price" value="item_price" class="btn btn-outline-secondary {% if request.GET.o == 'Price' %}active{% endif %}" data-toggle="tooltip" title="Lowest Price"
+                    ><i class="fa fa-dollar-sign"></i
+                  ></a>
+                  <a href="{% my_url '-Price' 'o' request.GET.urlencode %}" id="-price" value="-item_price" class="btn btn-outline-secondary {% if request.GET.o == '-Price' %}active{% endif %}" data-toggle="tooltip" title="Highest Price"
+                    ><i class="fa fa-dollar-sign"></i><i class="fa fa-dollar-sign"></i><i class="fa fa-dollar-sign"></i
+                  ></a>
+                  <a href="{% my_url 'Rating' 'o' request.GET.urlencode %}" class="btn btn-outline-secondary {% if request.GET.o == 'Rating' %}active{% endif %}" data-toggle="tooltip" title="Lowest Rating"><i class="fa fa-star"></i></a>
+                  <a href="{% my_url '-Rating' 'o' request.GET.urlencode %}" class="btn btn-outline-secondary {% if request.GET.o == '-Rating' %}active{% endif %}" data-toggle="tooltip" title="Highest Rating"
+                    ><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i
+                  ></a>
+                </div>
+              </div>
+            </header>
+            <!-- sect-heading -->
+            {% for product in products_obj %}
+            <article class="card card-product-list">
+              <div class="row no-gutters">
+                <aside class="col-md-3">
+                  <a href="#" class="img-wrap"><img src="{{ product.item_image_link }}" /></a>
+                </aside>
+                <!-- col.// -->
+                <div class="col-md-6">
+                  <div class="info-main">
+                    <a href="#" class="h5 title"> {{ product.item_name }} </a>
+                    <!-- rating-wrap.// -->
+                    <div class="container border-top">
+                      <div class="row mt-3">
+                        {% for i in others %} {% if i.item_model_number == product.item_model_number %}
+                        <div class="col-sm-4">
+                          <figure class="itemside">
+                            <!--<div class="aside"><img src="../images/items/1.jpg" class="border img-sm" /></div>-->
+
+                            <figcaption class="info align-self-center">
+                              <!--border-right border-left-->
+                              <!-- <a href="#" class="title">Camera Nikon D3100 Kit</a> -->
+                              <strong class="price pl-3">{{ i.item_price|intcomma }}</strong><small class=""> TL</small><br />
+                              {% comment %} <button href="{{i.item_link}}" class="btn btn-default mb-3"><img src="{% static 'images/'|add:i.item_site_name|add:'.png' %}" width="80" alt="{{i.item_site_name}}" /></button> {% endcomment %}
+                              <a href="{% if i.item_site_name == 'EnBilgisayar.com' %}{% url 'laptop' %}{{product.item_name}}{% else %}{{i.item_link}}{% endif %}" class="btn btn-default mb-3"
+                                ><img src="{% static 'images/'|add:i.item_site_name|add:'.png' %}" width="80" alt="{{i.item_site_name}}"
+                              /></a>
+                            </figcaption>
+                          </figure>
+                          {% comment %}
+                          <div class="rating-wrap mb-3">
+                            {% comment %}
+                            <ul class="rating-stars">
+                              <li style="width: 80%" class="stars-active">
+                                <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                              </li>
+                              <li>
+                                <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                              </li>
+                            </ul>
+                            <div class="label-rating">7/10</div>
+                            {% with rating=product.item_rating %}
+                            <!--|floatformat:"1"-->
+                            <ul class="rating-stars">
+                              <li style="width: {{ rating|mul:20.0 }}%" class="stars-active"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i></li>
+                              <li><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i></li>
+                            </ul>
+                            <small class="text-muted">{{ rating }}</small>
+                            {% endwith %}
+                          </div>
+                          {% endcomment %}
+                          <!--<li>{{ i.item_site_name }}-{{ i.item_price }}</li>-->
+                        </div>
+                        {% endif %} {% endfor %}
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- info-main.// -->
+                </div>
+                <!-- col.// -->
+                <aside class="col-sm-3">
+                  <div class="info-aside">
+                    <!--
+                    <div class="price-wrap">
+                      <span class="price h5"> $56 </span>
+                      <del class="price-old"> $85</del>
+                    </div>
+                    
+                    <p class="text-success">The Lowest Price!</p>
+                    -->
+                    <div class="rating-wrap mb-2">
+                      {% with rating=product.item_rating %}
+                      <!--|floatformat:"1"-->
+                      <ul class="rating-stars">
+                        <li style="width: {{ rating|mul:20.0 }}%" class="stars-active"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i></li>
+                        <li><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i></li>
+                      </ul>
+                      <small class="text-muted">{{ rating }}</small>
+                      {% endwith %}
+                    </div>
+                    <span class="mr-md-auto"> Prices </span>
+                    <br />
+                    <p>
+                      <a href="#" class="btn btn-success btn-block"> All Prices </a>
+                      <a href="#" class="btn btn-light btn-block"><i class="fa fa-heart"></i> <span class="text">Add to wishlist</span></a>
+                    </p>
+                  </div>
+                  <!-- info-aside.// -->
+                </aside>
+                <!-- col.// -->
+              </div>
+              {% comment %}
+              <figure class="card-product-grid">
+                {% endcomment %} {% comment %}
+                <figcaption class="info-wrap border-top">
+                  {% endcomment %}
+
+                  <!-- price-wrap.// -->
+                  {% comment %}
+                </figcaption>
+                {% endcomment %} {% comment %}
+              </figure>
+              {% endcomment %}
+              <!-- row.// -->
+            </article>
+            <!-- card-product .// -->
+            {% endfor %} {% comment %} {% include 'en_bilgisayar/partial/_pagination.html' %} {% endcomment %}
+          </main>
+
+          <!-- col.// -->
+        </div>
+      </div>
+      <!-- container .//  -->
+    </section>
+    <!-- ========================= SECTION CONTENT END// ========================= -->
+    {% include 'en_ucuz/partial/_footer.html' %}
   </body>
 </html>

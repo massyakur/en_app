@@ -1,4 +1,4 @@
-{% load static %}
+{% load static %} {% load humanize %}
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -19,7 +19,7 @@
           <ol class="breadcrumb text-white">
             <li class="breadcrumb-item"><a href="{% url 'home' %}">Home</a></li>
             <li class="breadcrumb-item"><a href="{% url 'laptop' %}">Laptop</a></li>
-            <li class="breadcrumb-item"><a href="#">{{ product.item_brand }}</a></li>
+            <li class="breadcrumb-item"><a href="{% url 'laptop' %}?item_brand={{ product.item_brand }}">{{ product.item_brand }}</a></li>
             <li class="breadcrumb-item active" aria-current="page">{{ product.item_name }}</li>
           </ol>
         </nav>
@@ -56,7 +56,7 @@
                 <!-- rating-wrap.// -->
 
                 <div class="mb-3">
-                  <var class="price h2">{{product.item_price}} TL</var>
+                  <var class="price h2">{{product.item_price|intcomma}} TL</var>
                 </div>
                 <!-- price-detail-wrap .// -->
 

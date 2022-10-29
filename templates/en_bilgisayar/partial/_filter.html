@@ -2,30 +2,27 @@
 <aside class="col-md-3">
   <form method="get">
     <div class="card">
-      {% comment %}
       <article class="filter-group">
+        {% comment %}
         <header class="card-header">
-          <form method="get">
-            {{ products.form|crispy }}
-            <input type="submit" value="Apply" class="btn btn-primary" />
-          </form>
           <a href="#" data-toggle="collapse" data-target="#collapse_1" aria-expanded="true" class="">
             <i class="icon-control fa fa-chevron-down"></i>
             <h6 class="title">Product type</h6>
           </a>
         </header>
-        <div class="filter-content collapse show" id="collapse_1" style="">
+        {% endcomment %}
+        <div class="filter-content collapse show" id="no" style="">
           <div class="card-body">
             <form class="pb-3">
               <div class="input-group">
-                <input type="text" class="form-control" placeholder="Search" />
+                <input type="text" name="q" class="form-control" placeholder="Search" />
                 <div class="input-group-append">
                   <button class="btn btn-light" type="button"><i class="fa fa-search"></i></button>
                 </div>
               </div>
             </form>
 
-            <ul class="list-menu">
+            <!--<ul class="list-menu">
               <li><a href="#">People </a></li>
               <li><a href="#">Watches </a></li>
               <li><a href="#">Cinema </a></li>
@@ -33,22 +30,21 @@
               <li><a href="#">Home items </a></li>
               <li><a href="#">Animals</a></li>
               <li><a href="#">People </a></li>
-            </ul>
+            </ul> -->
           </div>
           <!-- card-body.// -->
         </div>
       </article>
-      {% endcomment %}
 
       <!-- filter-group  .// -->
       <article class="filter-group">
         <header class="card-header">
-          <a href="#" data-toggle="collapse" data-target="#collapse_2" aria-expanded="true" class="">
+          <a href="#" data-toggle="collapse" data-target="#collapse_1" aria-expanded="true" class="">
             <i class="icon-control fa fa-chevron-down"></i>
             <h6 class="title">Brands</h6>
           </a>
         </header>
-        <div class="filter-content collapse show" id="collapse_2" style="">
+        <div class="filter-content collapse show" id="collapse_1" style="">
           <div class="card-body">
             {% comment %} {% for b in brand_list %}
             <label class="custom-control custom-checkbox">
@@ -67,12 +63,98 @@
       <!-- filter-group .// -->
       <article class="filter-group">
         <header class="card-header">
-          <a href="#" data-toggle="collapse" data-target="#collapse_3" aria-expanded="true" class="">
+          <a href="#" data-toggle="collapse" data-target="#collapse_2" aria-expanded="false" class="">
+            <i class="icon-control fa fa-chevron-down"></i>
+            <h6 class="title">Operating System</h6>
+          </a>
+        </header>
+        <div class="filter-content collapse in" id="collapse_2" style="">
+          <div class="card-body">{{ products.form.item_operating_system }}</div>
+          <!-- card-body.// -->
+        </div>
+      </article>
+      <!-- filter-group .// -->
+      <article class="filter-group">
+        <header class="card-header">
+          <a href="#" data-toggle="collapse" data-target="#collapse_3" aria-expanded="false" class="">
+            <i class="icon-control fa fa-chevron-down"></i>
+            <h6 class="title">Processor</h6>
+          </a>
+        </header>
+        <div class="filter-content collapse in" id="collapse_3" style="">
+          <div class="card-body">{{ products.form.item_processor_type }}</div>
+          <!-- card-body.// -->
+        </div>
+      </article>
+      <article class="filter-group">
+        <header class="card-header">
+          <a href="#" data-toggle="collapse" data-target="#collapse_4" aria-expanded="false" class="">
+            <i class="icon-control fa fa-chevron-down"></i>
+            <h6 class="title">RAM</h6>
+          </a>
+        </header>
+        <div class="filter-content collapse in" id="collapse_4" style="">
+          <div class="card-body">{{ products.form.item_ram }}</div>
+          <!-- card-body.// -->
+        </div>
+      </article>
+      <article class="filter-group">
+        <header class="card-header">
+          <a href="#" data-toggle="collapse" data-target="#collapse_5" aria-expanded="false" class="">
+            <i class="icon-control fa fa-chevron-down"></i>
+            <h6 class="title">Disk Type</h6>
+          </a>
+        </header>
+        <div class="filter-content collapse in" id="collapse_5" style="">
+          <div class="card-body">{{ products.form.item_disk_type }}</div>
+          <!-- card-body.// -->
+        </div>
+      </article>
+      <article class="filter-group">
+        <header class="card-header">
+          <a href="#" data-toggle="collapse" data-target="#collapse_6" aria-expanded="false" class="">
+            <i class="icon-control fa fa-chevron-down"></i>
+            <h6 class="title">Disk Size</h6>
+          </a>
+        </header>
+        <div class="filter-content collapse in" id="collapse_6" style="">
+          <div class="card-body">{{ products.form.item_disk_size }}</div>
+          <!-- card-body.// -->
+        </div>
+      </article>
+      <article class="filter-group">
+        <header class="card-header">
+          <a href="#" data-toggle="collapse" data-target="#collapse_7" aria-expanded="false" class="">
+            <i class="icon-control fa fa-chevron-down"></i>
+            <h6 class="title">Screen Size</h6>
+          </a>
+        </header>
+        <div class="filter-content collapse in" id="collapse_7" style="">
+          <div class="card-body">{{ products.form.item_screen_size }}</div>
+          <!-- card-body.// -->
+        </div>
+      </article>
+      <article class="filter-group">
+        <header class="card-header">
+          <a href="#" data-toggle="collapse" data-target="#collapse_8" aria-expanded="false" class="">
+            <i class="icon-control fa fa-chevron-down"></i>
+            <h6 class="title">Rating</h6>
+          </a>
+        </header>
+        <div class="filter-content collapse in" id="collapse_8" style="">
+          <div class="card-body">{{ products.form.item_rating }}</div>
+          <!-- card-body.// -->
+        </div>
+      </article>
+      <!-- filter-group .// -->
+      <article class="filter-group">
+        <header class="card-header">
+          <a href="#" data-toggle="collapse" data-target="#collapse_9" aria-expanded="true" class="">
             <i class="icon-control fa fa-chevron-down"></i>
             <h6 class="title">Price range</h6>
           </a>
         </header>
-        <div class="filter-content collapse show" id="collapse_3" style="">
+        <div class="filter-content collapse show" id="collapse_9" style="">
           <div class="card-body">
             <input type="range" class="custom-range" min="0" max="100" name="" />
             <div class="form-row">
