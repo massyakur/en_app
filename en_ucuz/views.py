@@ -12,11 +12,11 @@ def en_ucuz(request):
     q = request.GET.get('q')
     
     if q:
-        multiple_q = Q(Q(item_name__icontains=q) | Q(laptops__startswith={'item_site_name': q})) # 
+        multiple_q = Q(Q(item_name__icontains=q) | Q(laptops__icontains={'item_site_name': q})) # 
         products = Product.objects.filter(multiple_q)
     else:
         products = Product.objects.all()
-    Product.objects.raw
+    
     filtered_products = ProductFilter(request.GET, queryset=products)
     
     # paginated_filtered_products = Paginator(filtered_products.qs, 10)
