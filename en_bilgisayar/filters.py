@@ -13,8 +13,9 @@ class ProductFilter(django_filters.FilterSet):
     item_screen_size = django_filters.AllValuesMultipleFilter(widget=forms.CheckboxSelectMultiple)
     item_rating = django_filters.AllValuesMultipleFilter(widget=forms.CheckboxSelectMultiple)
     item_site_name = django_filters.AllValuesMultipleFilter(widget=forms.CheckboxSelectMultiple)
-    
-    # price = django_filters.NumberFilter(field_name='item_price')
+    # laptops = django_filters.AllValuesMultipleFilter(field_name = 'laptops.item_site_name')
+    # price = django_filters.NumberFilter(field_name='item_price') 
+    # category = filters.CharFilter(lookup_expr='icontains')
 
     o = django_filters.OrderingFilter(
         # tuple-mapping retains order

@@ -62,7 +62,7 @@
               </div>
             </header>
             <!-- sect-heading -->
-            {% for product in products_obj %}
+            {% for product in products.qs %}
             <article class="card card-product-list">
               <div class="row no-gutters">
                 <aside class="col-md-3">
@@ -71,11 +71,11 @@
                 <!-- col.// -->
                 <div class="col-md-6">
                   <div class="info-main">
-                    <a href="#" class="h5 title"> {{ product.item_name }} </a>
+                    <a href="{% url 'product-detail' product.item_name %}" class="h5 title"> {{ product.item_name }} </a>
                     <!-- rating-wrap.// -->
                     <div class="container border-top">
                       <div class="row mt-3">
-                        {% for i in others %} {% if i.item_model_number == product.item_model_number %}
+                        {% for i in product.laptops|dictsort:"item_price"|slice:3 %}
                         <div class="col-sm-4">
                           <figure class="itemside">
                             <!--<div class="aside"><img src="../images/items/1.jpg" class="border img-sm" /></div>-->
@@ -116,7 +116,7 @@
                           {% endcomment %}
                           <!--<li>{{ i.item_site_name }}-{{ i.item_price }}</li>-->
                         </div>
-                        {% endif %} {% endfor %}
+                        {% endfor %}
                       </div>
                     </div>
                   </div>
@@ -144,7 +144,7 @@
                       <small class="text-muted">{{ rating }}</small>
                       {% endwith %}
                     </div>
-                    <span class="mr-md-auto"> Prices </span>
+                    <span class="mr-md-auto"> {{product.laptops|length}} Prices </span>
                     <br />
                     <p>
                       <a href="#" class="btn btn-success btn-block"> All Prices </a>
