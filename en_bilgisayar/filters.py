@@ -13,7 +13,7 @@ class ProductFilter(django_filters.FilterSet):
     item_screen_size = django_filters.AllValuesMultipleFilter(widget=forms.CheckboxSelectMultiple)
     item_rating = django_filters.AllValuesMultipleFilter(widget=forms.CheckboxSelectMultiple)
     item_site_name = django_filters.AllValuesMultipleFilter(widget=forms.CheckboxSelectMultiple)
-    # laptops = django_filters.AllValuesMultipleFilter(field_name = 'laptops.item_site_name')
+    # laptops = django_filters.AllValuesMultipleFilter(field_name = 'laptops__item_site_name')
     # price = django_filters.NumberFilter(field_name='item_price') 
     # category = filters.CharFilter(lookup_expr='icontains')
 
