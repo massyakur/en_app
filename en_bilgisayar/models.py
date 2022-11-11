@@ -2,11 +2,9 @@ from djongo import models
 from django import forms
 from .fields import MyArrayField
 
-class All(models.Model):
-    pass
-
 class Laptop(models.Model):
     _id = models.ObjectIdField()
+    item_name = models.CharField(max_length=255)
     item_rating = models.FloatField()
     item_price = models.FloatField()
     item_site_name = models.CharField(max_length=50)

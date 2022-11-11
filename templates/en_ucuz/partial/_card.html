@@ -14,11 +14,11 @@
             <li><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i></li>
           </ul>
           <small class="text-muted">{{ rating }}</small>
-          <a href="/laptop/{{product.item_name}}" class="title mb-3">{{ product.item_name }}</a>
+          <a href="{% if product.item_site_name == 'EnBilgisayar' %}{% url 'laptop' %}{{product.item_name}}{% else %}{{product.item_link}}{% endif %}" class="title mb-3">{{ product.item_name }}</a>
 
           <div class="mt-2">
             <var class="price">{{ product.item_price|intcomma }} TL</var>
-            <a href="{{ product.item_link }}" class="btn btn-sm btn-outline-success float-right">Go to site</a>
+            <a href="{% if product.item_site_name == 'EnBilgisayar' %}{% url 'laptop' %}{{product.item_name}}{% else %}{{product.item_link}}{% endif %}" class="btn btn-sm btn-outline-success float-right">Go to site</a>
           </div>
 
           {% endwith %}

@@ -4,7 +4,7 @@ from en_bilgisayar.filters import ProductFilter
 from itertools import chain
 from django.core.paginator import Paginator
 from django.db.models import Q
-
+import json, os
 
 
 def en_ucuz(request):
@@ -38,3 +38,10 @@ def product_detail(request, name):
     
     n = range(500)
     return render(request, 'en_ucuz/detail.html', {'product': product, 'n': n})
+
+def refresh(request):
+    os.chdir(r"D:\YazLab\1\Project1\Django Project\en_app\n11")
+    os.system("scrapy crawl AllSpider")
+    os.system("python my_json.py")
+    os.system("python insert_json.py")
+    return en_ucuz(request)

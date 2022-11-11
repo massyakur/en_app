@@ -85,7 +85,7 @@
                               <!-- <a href="#" class="title">Camera Nikon D3100 Kit</a> -->
                               <strong class="price pl-3">{{ i.item_price|intcomma }}</strong><small class=""> TL</small><br />
                               {% comment %} <button href="{{i.item_link}}" class="btn btn-default mb-3"><img src="{% static 'images/'|add:i.item_site_name|add:'.png' %}" width="80" alt="{{i.item_site_name}}" /></button> {% endcomment %}
-                              <a href="{% if i.item_site_name == 'EnBilgisayar.com' %}{% url 'laptop' %}{{product.item_name}}{% else %}{{i.item_link}}{% endif %}" class="btn btn-default mb-3"
+                              <a href="{% if i.item_site_name == 'EnBilgisayar' %}{% url 'laptop' %}{{product.item_name}}{% else %}{{i.item_link}}{% endif %}" class="btn btn-default mb-3"
                                 ><img src="{% static 'images/'|add:i.item_site_name|add:'.png' %}" width="80" alt="{{i.item_site_name}}"
                               /></a>
                             </figcaption>
